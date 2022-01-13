@@ -35,8 +35,7 @@ export default function AboutMe(props) {
   const renderHighlight = () => {
     return SCREEN_CONSTANTS.highlights.bullets.map((value, i) => (
       <div className="highlight" key={i}>
-        <div className="highlight-blob"></div>
-        <span> {value} </span>
+        <div className="highlight-blob"> </div> <span> {value} </span>{" "}
       </div>
     ));
   };
@@ -47,32 +46,36 @@ export default function AboutMe(props) {
       <div className="about-me-parent">
         {" "}
         {/* pass the value and render */}{" "}
-        <ScreenHeading title={"About Me"} subHeading={"Why Choose Me?"} />
-        {/* display data in UI */}
+        <ScreenHeading title={"About Me"} subHeading={"Why Choose Me?"} />{" "}
+        {/* display data in UI */}{" "}
         <div className="about-me-card">
-          <div className="about-me-profile"></div>
+          <div className="about-me-profile"> </div>{" "}
           <div className="about-me-details">
             <span className="about-me-description">
               {" "}
               {SCREEN_CONSTANTS.description}{" "}
-            </span>
+            </span>{" "}
             <div className="about-me-highlights">
               <div className="highlight-heading">
-                <span>{SCREEN_CONSTANTS.highlights.heading}</span>
-              </div>
-              {/* highlights section rendering */}
-              {renderHighlight()}
+                <span> {SCREEN_CONSTANTS.highlights.heading} </span>{" "}
+              </div>{" "}
+              {/* highlights section rendering */} {renderHighlight()}{" "}
             </div>
-
             <div className="about-me-options">
-              <button className="btn primary-btn"> Hire Me </button>{" "}
+              <button
+                className="btn primary-btn"
+                onClick={() => ScrollService.scrollHandler.scrollToHireMe()}
+              >
+                {" "}
+                Hire Me{" "}
+              </button>{" "}
               <a href="Resume_CHHETRI.pdf" download="Pun Chhetri.pdf">
-                <button className="btn highlighted-btn">Get Resume</button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+                <button className="btn highlighted-btn"> Get Resume </button>{" "}
+              </a>{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>{" "}
+      </div>{" "}
     </div>
   );
 }
