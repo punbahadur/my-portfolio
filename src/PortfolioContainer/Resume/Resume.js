@@ -1,8 +1,8 @@
-import "./Resume.css";
+import React, {useState} from "react";
 import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
-import React, {useState} from "react";
+import "./Resume.css";
 
 export default function Resume(props) {
   const [selectedBulletIndex, setSelectedBulletIndex] = useState(0);
@@ -22,22 +22,21 @@ export default function Resume(props) {
     return (
       <div className="resume-heading">
         <div className="resume-main-heading">
-          <div className="heading-bullet">
-            <span>{props.heading ? props.heading : ""}</span>
-            {props.fromDate && props.toDate ? (
-              <div className="heading-date">
-                {props.fromDate + "_" + props.toDate}
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
-          <div className="resume-sub-heading">
-            <span>{}props.subHeading? props.subHeading : ''</span>
-          </div>
-          <div className="resume-heading-description">
-            <span>{props.description ? props.description : ""}</span>
-          </div>
+          <div className="heading-bullet"></div>
+          <span>{props.heading ? props.heading : ""}</span>
+          {props.fromDate && props.toDate ? (
+            <div className="heading-date">
+              {props.fromDate + "-" + props.toDate}
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
+        <div className="resume-sub-heading">
+          <span>{props.subHeading ? props.subHeading : ""}</span>
+        </div>
+        <div className="resume-heading-description">
+          <span>{props.description ? props.description : ""}</span>
         </div>
       </div>
     );
@@ -106,83 +105,86 @@ export default function Resume(props) {
         toDate={"2015"}
       />
     </div>,
+
     <div className="resume-screen-container" key="work-experience">
-      <ResumeHeading
-        heading={"Slingshot, LLC"}
-        subHeading={"FRONT END DEVELOPER INTERN"}
-        fromDate={"June 2021"}
-        toDate={"Dec. 2021"}
-      />
-      <div className="experience-description">
-        <span className="resume-description-text">
-          Worked in a client portal developement project, fixing website errors
-          and client issues
-        </span>
+      <div className="experience-container">
+        <ResumeHeading
+          heading={"Slingshot, LLC"}
+          subHeading={"FRONT END DEVELOPER INTERN"}
+          fromDate={"June 2021"}
+          toDate={"Dec. 2021"}
+        />
+        <div className="experience-description">
+          <span className="resume-description-text">
+            Worked in a client portal developement project, fixing website
+            errors and client issues
+          </span>
+        </div>
+        <div className="experience-description">
+          <span className="resume-description-text">
+            - Created websites using HTML, CSS, JavaScript, and implemented
+            enhancements that improved web functionality and responsiveness
+            using React.
+          </span>
+          <br />
+          <span className="resume-description-text">
+            - Enhanced user experience and maintained websites, using scripting
+            languages and content management system WordPress.
+          </span>
+          <br />
+          <span className="resume-description-text">
+            - Maintained an organized workflow using project management tool
+            like GitHub, monitored website performance and rectified front-end
+            related issues.
+          </span>
+          <br />
+        </div>
       </div>
-      <div className="experience-description">
-        <span className="resume-description-text">
-          Created websites using HTML, CSS, JavaScript, and implemented
-          enhancements that improved web functionality and responsiveness using
-          React.
-        </span>
-        <br />
-        <span className="resume-description-text">
-          Enhanced user experience and maintained websites, using scripting
-          languages and content management system WordPress.
-        </span>
-        <br />
-        <span className="resume-description-text">
-          Maintained an organized workflow using project management tool like
-          GitHub, monitored website performance and rectified front-end related
-          issues.
-        </span>
-      </div>
-      ,
-      <div
-        className="resume-screen-container programming-skills-container"
-        key="programming-skills"
-      >
-        {programmingSkillDetails.map((skill, index) => (
-          <div className="skill-parent" key={index}>
-            <div className="heading-bullet"></div>
-            <span>{skill.skill}</span>
-            <div className="skill-percentage">
-              <div
-                style={{width: skill.ratingPercentage + "%"}}
-                className="active-percentage"
-              ></div>
-            </div>
+    </div>,
+    <div
+      className="resume-screen-container programming-skills-container"
+      key="programming-skills"
+    >
+      {programmingSkillDetails.map((skill, index) => (
+        <div className="skill-parent" key={index}>
+          <div className="heading-bullet"></div>
+          <span>{skill.skill}</span>
+          <div className="skill-percentage">
+            <div
+              style={{width: skill.ratingPercentage + "%"}}
+              className="active-percentage"
+            ></div>
           </div>
-        ))}
-      </div>
-      ,
-      <div className="resume-screen-container" key="projects">
-        {projectDetails.map((projectDetails, index) => (
-          <ResumeHeading
-            key={index}
-            heading={projectDetails.title}
-            subHeading={projectDetails.subHeading}
-            description={projectDetails.description}
-            fromDate={projectDetails.duration.fromDate}
-            toDate={projectDetails.duration.toDate}
-          />
-        ))}
-      </div>
-      ,
-      <div className="resume-screen-container" key="interests">
+        </div>
+      ))}
+    </div>,
+
+    <div className="resume-screen-container" key="projects">
+      {projectDetails.map((projectDetails, index) => (
         <ResumeHeading
-          heading="Volunteering"
-          description="Apart from being a tech enthusiast, I also love to give back to the community by serving during my free time"
+          key={index}
+          heading={projectDetails.title}
+          subHeading={projectDetails.subHeading}
+          description={projectDetails.description}
+          fromDate={projectDetails.duration.fromDate}
+          toDate={projectDetails.duration.toDate}
         />
-        <ResumeHeading
-          heading="Music"
-          description="I love to listen to pop and some country songs besides my national folk music. Music helps me relax and motivates me! "
-        />
-        <ResumeHeading
-          heading="Soccer"
-          description="I love playing soccer although I am not best at it. I discovered my interest in soccer when I was 18 and been constantly playing after that. I have won two Gorkhali League while I was at UNM"
-        />
-      </div>
+      ))}
+    </div>,
+
+    <div className="resume-screen-container" key="interests">
+      <ResumeHeading
+        heading="Volunteering"
+        description="Apart from being a tech enthusiast, I also love to give back to the community by serving during my free time"
+      />
+      <ResumeHeading
+        heading="Music"
+        description="I love to listen to pop and some country songs besides my national folk music. Music helps me relax and motivates me! "
+      />
+      <ResumeHeading
+        heading="Soccer"
+        description="I love playing soccer although I am not best at it. I discovered my interest in soccer when I was 18 and been constantly playing after that. I have won two Gorkhali League while I was at UNM"
+      />
     </div>,
   ];
 
@@ -232,16 +234,14 @@ export default function Resume(props) {
   return (
     <div className="resume-container screen-container" id={props.id || ""}>
       <div className="resume-content">
-        <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />
+        <ScreenHeading title={"Resume"} subHeading={"My Formal Bio Details"} />
         <div className="resume-card">
-          <div className="resume -bullets">
+          <div className="resume-bullets">
             <div className="bullet-container">
-              <div className="bullet-icons">
-                <div className="bullets">{getBullets()}</div>
-              </div>
+              <div className="bullet-icons"></div>
+              <div className="bullets">{getBullets()}</div>
             </div>
           </div>
-
           <div className="resume-bullet-details">{getResumeScreen()}</div>
         </div>
       </div>
